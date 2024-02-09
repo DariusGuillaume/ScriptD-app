@@ -2,6 +2,8 @@
 import SwiftUI
 
 struct QuestionView: View {
+    
+    @EnvironmentObject var triviaManager : TriviaManager
     var body: some View {
         VStack(spacing:40){
             HStack {
@@ -9,7 +11,7 @@ struct QuestionView: View {
                     .orangeTitle()
                 
                 Spacer()
-                Text("1 out of 15")
+                Text("1 out of 10")
                     .foregroundColor(Color("AccentColor"))
                     .fontWeight(.heavy)
             }
@@ -22,9 +24,13 @@ struct QuestionView: View {
                     .bold()
                     
                 AnswerRow(answer:Answer(text: AttributedString("16"), isCorrect: false))
+                    .environmentObject(triviaManager)
                 AnswerRow(answer:Answer(text: AttributedString("14"), isCorrect: true))
+                    .environmentObject(triviaManager)
                 AnswerRow(answer:Answer(text: AttributedString("18"), isCorrect: false))
+                    .environmentObject(triviaManager)
                 AnswerRow(answer:Answer(text: AttributedString("20"), isCorrect: false))
+                    .environmentObject(triviaManager)
                     
             }
             PrimaryButton(text:"Next")
@@ -39,6 +45,9 @@ struct QuestionView: View {
     }
 }
 
-#Preview {
-    QuestionView()
+struct QuestionView_Previews : PreviewProvider {
+    static var previews : some View {
+        QuestionView()
+            .environmentObject(TriviaManager())
+    }
 }
