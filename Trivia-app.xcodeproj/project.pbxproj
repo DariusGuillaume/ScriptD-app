@@ -98,6 +98,7 @@
 		1AD122732B74D527006C42C7 /* Trivia-app */ = {
 			isa = PBXGroup;
 			children = (
+				1A1973E62B761188006D3ADE /* TriviaManager.swift */,
 				1A1258532B7509A600C9ACE4 /* Models */,
 				1A12584C2B7500FD00C9ACE4 /* Views */,
 				1A01299D2B74DDD000816AF7 /* Components */,
@@ -105,7 +106,6 @@
 				1AD122782B74D529006C42C7 /* Assets.xcassets */,
 				1AD1227A2B74D529006C42C7 /* Preview Content */,
 				1A12584D2B75033F00C9ACE4 /* Extensions.swift */,
-				1A1973E62B761188006D3ADE /* TriviaManager.swift */,
 			);
 			path = "Trivia-app";
 			sourceTree = "<group>";

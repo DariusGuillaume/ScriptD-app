@@ -11,35 +11,37 @@ struct QuestionView: View {
                     .orangeTitle()
                 
                 Spacer()
-                Text("1 out of 10")
+                
+                Text("\(triviaManager.index + 1)out of \(triviaManager.length)")
                     .foregroundColor(Color("AccentColor"))
                     .fontWeight(.heavy)
             }
-            ProgressBar(progress: 40)
+            ProgressBar(progress: triviaManager.progress)
             VStack(alignment: .leading, spacing: 20) {
-               Text("How old was Laurence Fishburne when Francis Ford Coppola cast him in Apocalypse Now (1979)? ")
-                
+                Text(triviaManager.question)
                     .font(.system(size: 20))
                     .foregroundColor(Color.yellow)
                     .bold()
-                    
-                AnswerRow(answer:Answer(text: AttributedString("16"), isCorrect: false))
-                    .environmentObject(triviaManager)
-                AnswerRow(answer:Answer(text: AttributedString("14"), isCorrect: true))
-                    .environmentObject(triviaManager)
-                AnswerRow(answer:Answer(text: AttributedString("18"), isCorrect: false))
-                    .environmentObject(triviaManager)
-                AnswerRow(answer:Answer(text: AttributedString("20"), isCorrect: false))
-                    .environmentObject(triviaManager)
+                
+                ForEach(triviaManager.answerChoices , id: \.id) {answer in
+                    AnswerRow(answer:answer)
+                        .environmentObject(triviaManager)
+                }
                     
             }
-            PrimaryButton(text:"Next")
+            Button{
+                triviaManager.nextQuestion()
+                
+            } label: {
+                PrimaryButton(text:"Next", background: triviaManager.answerChosen ? Color("AccentColor") : Color(hue: 1.0, saturation: 0.0 , brightness: 0.564 , opacity : 0.327))
+            }
             
+            .disabled(!triviaManager.answerChosen)
             Spacer()
         }
         
         .padding()
-        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)
+        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity )
         .background(Color(white:0.1))
         .navigationBarHidden(true)
     }
